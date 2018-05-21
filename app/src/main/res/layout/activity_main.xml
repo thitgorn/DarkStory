@@ -9,7 +9,8 @@
     android:background="@android:color/holo_blue_light"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context="com.example.thitiwat.darkstory.MainActivity">
+    tools:context="com.example.thitiwat.darkstory.view.MainActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
