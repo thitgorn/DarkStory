@@ -1,25 +1,21 @@
 package com.example.thitiwat.darkstory.view
 
 import android.content.Intent
-import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.thitiwat.darkstory.R
-import org.json.JSONArray
-import org.json.JSONObject
-import java.net.URL
+import com.example.thitiwat.darkstory.controller.MainController
 
 class MainActivity : AppCompatActivity() {
-    private var questions:String = ""
-    private var loadingState:Boolean = false
+
+    private val controller: MainController = MainController()
 
 //    TODO CHECK CURRENT STAGE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val loader = QuestionLoader()
-        loader.execute()
+        controller.loadQuestion()
     }
 
 //    clean up later
@@ -35,22 +31,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-//    sync real data
-    inner class QuestionLoader : AsyncTask<String, String, String>() {
-        override fun doInBackground(vararg p0: String?): String {
-            return URL("http://35.197.154.253:3000/questions").readText()
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            if(result!=null) {
-                questions = result
-                loadingState = true
-                var JSON = JSONArray(questions)
-                for( i in 0..(JSON.length() - 1)) {
-                    println(JSON.getJSONObject(i))
-                }
-            }
-        }
-    }
 }
