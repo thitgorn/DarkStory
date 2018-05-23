@@ -11,8 +11,14 @@ class Question(var id: Int=0 ,var topic:String ,var keyword:Array<String>,var an
             if (userAnswer.contains(it))
                 corrent = true
         }
-
         return corrent
+    }
+
+    fun isMatchAnswer(answer: String):Boolean {
+        var correct: Boolean = false
+        if(answer.contains(this.answer))
+            return true
+        return false
     }
 
     override fun toString(): String {

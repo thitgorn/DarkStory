@@ -22,7 +22,8 @@
         android:layout_margin="10dp"
         android:background="@android:color/holo_purple"
         android:padding="10dp"
-        android:text="Mock Level Button"
+        android:text="Level 1"
+        android:onClick="onLevelButtonClicked"
         android:textColor="@android:color/background_light" />
 
     <Button
@@ -31,23 +32,26 @@
         android:layout_margin="10dp"
         android:background="@android:color/holo_purple"
         android:padding="10dp"
-        android:text="Mock Level Button"
+        android:text="Level 2"
+        android:onClick="onLevelButtonClicked"
         android:textColor="@android:color/background_light" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/holo_purple"
-        android:padding="10dp"
-        android:text="Mock Level Button"
-        android:textColor="@android:color/background_light" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/holo_purple"
-        android:padding="10dp"
-        android:text="Mock Level Button"
-        android:textColor="@android:color/background_light" />
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="@android:color/holo_purple"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Level 3"-->
+        <!--android:onClick="onLevelButtonClicked"-->
+        <!--android:textColor="@android:color/background_light" />-->
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="@android:color/holo_purple"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Level 4"-->
+        <!--android:onClick="onLevelButtonClicked"-->
+        <!--android:textColor="@android:color/background_light" />-->
 
 </LinearLayout>

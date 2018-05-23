@@ -21,13 +21,24 @@ class QuestionActivity : AppCompatActivity() {
     }
 
 //    set Question to Activity
-    fun loadQuestionToView() {
+    private fun loadQuestionToView() {
         level.text = "Level : " + question.id
         story.text = question.story
     }
 
     fun onButtonClicked(view: View) {
-        var match = question.isMatchKeyWord(answer.text.toString())
-        Toast.makeText(this,match.toString(),Toast.LENGTH_LONG).show()
+        val answer = answer.text.toString()
+        var toastText = ""
+        if(question.isMatchAnswer(answer)) {
+            toastText = "Correct"
+            MainController.getInstance().setCurrentQuestion(question.id + 1)
+            question = MainController.getInstance().getCurrentQuestion()
+            loadQuestionToView()
+        } else if (question.isMatchKeyWord(answer)) {
+            toastText = "Keyword matched"
+        } else {
+            toastText = "Completely wrong"
+        }
+        Toast.makeText(this,toastText,Toast.LENGTH_LONG).show()
     }
 }

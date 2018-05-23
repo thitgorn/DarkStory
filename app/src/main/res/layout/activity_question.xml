@@ -51,8 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="Answer"
             android:inputType="textPersonName"
-            android:text="Answer" />
+            android:text="" />
 
         <Button
             android:id="@+id/enter"
