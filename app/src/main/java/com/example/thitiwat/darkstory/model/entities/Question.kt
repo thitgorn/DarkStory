@@ -1,4 +1,4 @@
-package com.example.thitiwat.darkstory.model
+package com.example.thitiwat.darkstory.model.entities
 
 class Question(var id: Int=0 ,var topic:String ,var keyword:Array<String>,var answer:String,var story:String) {
 
@@ -13,5 +13,9 @@ class Question(var id: Int=0 ,var topic:String ,var keyword:Array<String>,var an
         }
 
         return corrent
+    }
+
+    override fun toString(): String {
+        return this.id.toString() + " " + this.story + " " + this.answer
     }
 }

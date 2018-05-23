@@ -1,52 +1,44 @@
 package com.example.thitiwat.darkstory.controller
 
-import android.os.AsyncTask
-import com.example.thitiwat.darkstory.model.Question
-import org.json.JSONArray
-import java.net.URL
+import com.example.thitiwat.darkstory.model.entities.Question
+import com.example.thitiwat.darkstory.model.repository.MockupRepository
+import com.example.thitiwat.darkstory.model.repository.NetworkRepository
+import com.example.thitiwat.darkstory.model.repository.Repository
 
-class MainController {
-    private val questions = ArrayList<Question>()
+class MainController private constructor() {
 
-    fun loadQuestion() {
-        var questionLoader = QuestionLoader()
-        questionLoader.execute()
+    private var currentQuestion : Int = 1
+    private var questionRepository: Repository = MockupRepository()
+
+    fun loadRepository() {
+        questionRepository.loadQuestion()
     }
 
-    fun setQuestion(jsonArray: JSONArray) {
-        questions.clear()
-        for( i in 0..(jsonArray.length() - 1)) {
-            var jsObj = jsonArray.getJSONObject(i)
-//            add manually
-            var keywords = JSONArray(jsObj.getString("keyword"))
-            var arrKeywords = Array<String>(keywords.length()) { "" }
-            for( i in 0..(keywords.length() - 1)) {
-                arrKeywords[i] = keywords[i].toString()
-            }
-            var question = Question(jsObj.getString("id").toInt() , jsObj.getString("topic") , arrKeywords , jsObj.getString("answer") , jsObj.getString("story"))
-            questions.add(question)
-        }
+    fun getCurrentQuestion(): Question {
+        return questionRepository.getQuestion().get(this.currentQuestion - 1)
     }
 
-//    Can be null if not found
-    fun getQuestion(id : Int): Question? {
-        return questions.filter { it.id == id }.get(0)
+    fun getQuestion(id:Int): Question? {
+        val question: Question?
+        question = questionRepository.getQuestion().get(id)
+        return question
     }
 
+    fun setRepository(repos: Repository) {
+        this.questionRepository = repos
+    }
 
-    //    sync real data
-    inner class QuestionLoader : AsyncTask<String, String, String>() {
-        private val URL: String = "http://35.197.154.253:3000/questions"
-        override fun doInBackground(vararg p0: String?): String {
-            return URL(this.URL).readText()
+    fun setCurrentQuestion(id : Int) {
+        this.currentQuestion = id
+    }
+
+    companion object {
+        private val mInstance:MainController = MainController()
+
+        @Synchronized
+        fun getInstance():MainController {
+            return mInstance
         }
 
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            if(result!=null) {
-                var JSON = JSONArray(result)
-                setQuestion(JSON)
-            }
-        }
     }
 }

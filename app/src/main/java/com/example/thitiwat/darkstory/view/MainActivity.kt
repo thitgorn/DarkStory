@@ -6,22 +6,23 @@ import android.os.Bundle
 import android.view.View
 import com.example.thitiwat.darkstory.R
 import com.example.thitiwat.darkstory.controller.MainController
+import com.example.thitiwat.darkstory.model.repository.NetworkRepository
 
 class MainActivity : AppCompatActivity() {
 
-    private val controller: MainController = MainController()
+    private val controller: MainController = MainController.getInstance()
 
-//    TODO CHECK CURRENT STAGE
+    init {
+//        controller.setRepository(NetworkRepository())
+        controller.loadRepository()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        controller.loadQuestion()
     }
 
-//    clean up later
-//    FOR NOW LET'S ASSUME IT starts at 1
     fun onCurrentClick(view: View) {
-        val currentStage = 1
         val intent = Intent(this, QuestionActivity::class.java)
         startActivity(intent)
     }
